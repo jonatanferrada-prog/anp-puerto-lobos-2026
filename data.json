@@ -1,0 +1,238 @@
+{
+  "version": "0.13.0",
+  "area": {
+    "name": "ANP Puerto Lobos",
+    "province": "Río Negro",
+    "org": "Secretaría de Ambiente y Cambio Climático"
+  },
+  "emergencias": [
+    {
+      "nombre": "Guardas Ambientales ANP Puerto Lobos",
+      "numero": "2804 584870",
+      "alternativo": ""
+    },
+    {
+      "nombre": "Prefectura Naval",
+      "numero": "106",
+      "alternativo": "2934 48-1154"
+    },
+    {
+      "nombre": "Bomberos",
+      "numero": "100",
+      "alternativo": "2934 49-5063"
+    },
+    {
+      "nombre": "Policía",
+      "numero": "101",
+      "alternativo": ""
+    },
+    {
+      "nombre": "Hospital",
+      "numero": "107",
+      "alternativo": "2920 297574"
+    }
+  ],
+  "fauna": [
+    {
+      "id": "lobo-marino",
+      "nombre": "Lobo marino de un pelo",
+      "cientifico": "Otaria flavescens",
+      "grupo": "Mamíferos",
+      "estado": "LC",
+      "descripcion": "Colonias costeras; sensible a disturbios.",
+      "imagen": "images/placeholder.png",
+      "frecuencia": "Ocasional"
+    },
+    {
+      "id": "playero-rojizo",
+      "nombre": "Playero rojizo",
+      "cientifico": "Calidris canutus",
+      "grupo": "Aves",
+      "estado": "NT",
+      "descripcion": "Migrador de larga distancia; usa costas como sitio de descanso.",
+      "imagen": "images/placeholder.png",
+      "frecuencia": "Ocasional"
+    },
+    {
+      "name": "Medusa campana (hidrozoos)",
+      "scientific": "Obelia / hidrozoos (grupo)",
+      "group": "Invertebrados marinos",
+      "habitat": "Intermareal rocoso y submareal somero",
+      "description": "Colonias y medusas pequeñas, delicadas, parte clave del plancton costero y del alimento de peces juveniles.",
+      "image": "images/gallery/A_collection_of_eight_realistic_digital_illustrati.png",
+      "frecuencia": "Ocasional",
+      "imagen": "images/placeholder.png"
+    },
+    {
+      "name": "Charrán real",
+      "scientific": "Thalasseus maximus (probable)",
+      "group": "Aves marinas",
+      "habitat": "Costa, playas y restingas",
+      "description": "Aprovecha cardúmenes cerca de la superficie; nidifica en colonias y es sensible a disturbios en época reproductiva.",
+      "image": "images/gallery/A_triptych_of_photographic_underwater_and_aerial_w.png",
+      "frecuencia": "Ocasional",
+      "imagen": "images/placeholder.png"
+    },
+    {
+      "name": "Cormoranes (colonia)",
+      "scientific": "Phalacrocorax spp.",
+      "group": "Aves marinas",
+      "habitat": "Islotes y restingas rocosas",
+      "description": "Aves buceadoras; forman colonias numerosas y son excelentes indicadores del estado del mar cercano.",
+      "image": "images/gallery/A_collection_of_fourteen_wildlife_photographs_feat.png",
+      "frecuencia": "Ocasional",
+      "imagen": "images/placeholder.png"
+    },
+    {
+      "name": "Babosas de mar (nudibranquios)",
+      "scientific": "Nudibranchia (grupo)",
+      "group": "Invertebrados marinos",
+      "habitat": "Fondos rocosos con algas",
+      "description": "Coloridas y llamativas; muchas se alimentan de hidrozoos y esponjas. Un clásico de las inmersiones patagónicas.",
+      "image": "images/gallery/A_collection_of_twelve_wildlife_and_landscape_phot.png",
+      "frecuencia": "Ocasional",
+      "imagen": "images/placeholder.png"
+    },
+    {
+      "nombre": "Delfín común (Delphinus delphis)",
+      "cientifico": "Delphinus delphis",
+      "grupo": "Mamíferos marinos",
+      "estado": "No Amenazado",
+      "frecuencia": "Frecuente",
+      "descripcion": "Se observa en grupos; puede acercarse a la costa siguiendo cardúmenes. Avistajes habituales con mar calmo.",
+      "imagen": "images/species/delfin_comun.jpg"
+    },
+    {
+      "nombre": "Ballena franca austral (Eubalaena australis)",
+      "cientifico": "Eubalaena australis",
+      "grupo": "Mamíferos marinos",
+      "estado": "No Amenazado",
+      "frecuencia": "Estacional",
+      "descripcion": "Avistajes principalmente en invierno–primavera durante migración y reproducción; desde la costa se la puede ver soplando a distancia.",
+      "imagen": "images/species/ballena_franca.jpg"
+    },
+    {
+      "nombre": "Elefante marino del sur (Mirounga leonina)",
+      "cientifico": "Mirounga leonina",
+      "grupo": "Mamíferos marinos",
+      "estado": "No Amenazado",
+      "frecuencia": "Ocasional",
+      "descripcion": "Puede aparecer descansando en playas aisladas; mantener distancia y no bloquear su salida al mar.",
+      "imagen": "images/species/elefante_marino.jpg"
+    }
+  ],
+  "puntosInteres": [
+    {
+      "id": "ingreso",
+      "nombre": "Ingreso / Portal",
+      "tipo": "Acceso",
+      "descripcion": "Punto de inicio y recomendaciones generales.",
+      "lat": -41.0,
+      "lng": -65.0,
+      "imagen": "images/hero.jpg"
+    },
+    {
+      "id": "loberia",
+      "nombre": "Lobería",
+      "tipo": "Fauna",
+      "descripcion": "Zona de presencia de lobos marinos. Mantener distancia y silencio.",
+      "lat": -41.02,
+      "lng": -65.02,
+      "imagen": "images/hero.jpg"
+    }
+  ],
+  "checklist": [
+    {
+      "id": "agua",
+      "texto": "Agua y abrigo",
+      "categoria": "Personal"
+    },
+    {
+      "id": "botiquin",
+      "texto": "Botiquín",
+      "categoria": "Operativo"
+    },
+    {
+      "id": "radio",
+      "texto": "Comunicación / señal",
+      "categoria": "Operativo"
+    },
+    {
+      "id": "residuos",
+      "texto": "Bolsa para residuos",
+      "categoria": "Territorio"
+    }
+  ],
+  "mareas": {
+    "fuente": "Servicio de Hidrografía Naval (SHN)",
+    "ubicacion": "Puerto Lobos / Punta Colorada",
+    "mes": "2026-02",
+    "nota": "Datos cargados desde PDF provisto (parcial). Se puede ampliar incorporando el resto del mes/año.",
+    "datos": {
+      "2026-02-01": [
+        {
+          "time": "05:02",
+          "height_m": 1.12
+        },
+        {
+          "time": "11:14",
+          "height_m": 8.06
+        },
+        {
+          "time": "17:24",
+          "height_m": 1.53
+        },
+        {
+          "time": "23:28",
+          "height_m": 8.27
+        }
+      ],
+      "2026-02-02": [
+        {
+          "time": "05:56",
+          "height_m": 0.87
+        },
+        {
+          "time": "12:08",
+          "height_m": 8.38
+        },
+        {
+          "time": "18:19",
+          "height_m": 1.27
+        }
+      ],
+      "2026-02-16": [
+        {
+          "time": "04:53",
+          "height_m": 2.24
+        },
+        {
+          "time": "11:08",
+          "height_m": 7.03
+        },
+        {
+          "time": "17:08",
+          "height_m": 2.46
+        },
+        {
+          "time": "23:09",
+          "height_m": 7.16
+        }
+      ],
+      "2026-02-17": [
+        {
+          "time": "05:35",
+          "height_m": 1.92
+        },
+        {
+          "time": "11:52",
+          "height_m": 7.36
+        },
+        {
+          "time": "17:54",
+          "height_m": 2.26
+        }
+      ]
+    }
+  }
+}

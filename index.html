@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#1C4587">
+  <title>ANP Puerto Lobos</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="icons/icon-192.png">
+
+  <!-- Leaflet (map) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand" role="button" tabindex="0" data-nav="home" aria-label="Ir al inicio">
+      <img src="icons/icon-96.png" alt="ANP">
+      <div class="titles">
+        <div class="h1">Puerto Lobos · Área Natural Protegida</div>
+        <div class="h2">Secretaría de Ambiente y Cambio Climático · Río Negro</div>
+      </div>
+    </div>
+    <button id="themeToggle" class="themeToggle" title="Tema" aria-label="Tema">☀️</button>
+  </header>
+
+  <main class="wrap">
+    <!-- HOME -->
+    <section id="home" class="page active">
+  <div class="hero">
+    <img src="images/hero.jpg" alt="Costa de Puerto Lobos" class="hero-img">
+    <div class="hero-overlay">
+      <div class="hero-title">
+        <div class="hero-ver">v0.13.0 · Secretaría de Ambiente y Cambio Climático · Río Negro</div>
+        <div class="hero-main">ANP PUERTO<br>LOBOS</div>
+        <div class="hero-sub">Área Natural Protegida – Río Negro</div>
+      </div>
+      <div class="hero-actions">
+        <button class="pill pill-green" data-mode="visitante">Modo Visitante</button>
+        <button class="pill pill-blue" data-mode="operativo">Modo Operativo • PIN</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <a class="card card-soft" href="#mareas" data-nav="mareas">
+      <div class="card-h">Mareas</div>
+      <div class="card-k">Próxima pleamar</div>
+      <div class="card-v">Ver detalle</div>
+      <div class="card-note small">Fuente: Servicio de Hidrografía Naval</div>
+    </a>
+
+    <div class="card card-soft">
+      <div class="card-h">Clima</div>
+      <div class="card-k">Información</div>
+      <div class="card-v">Próximamente</div>
+      <div class="card-note small">Se integrará un proveedor meteorológico.</div>
+    </div>
+  </div>
+
+  <div class="grid-3">
+    <button class="tile tile-green" data-nav="operativo">
+      <div class="tile-ic">📋</div>
+      <div class="tile-t">Operativo</div>
+      <div class="tile-s">Checklist • patrullaje</div>
+    </button>
+
+    <button class="tile tile-photo" data-nav="fauna">
+      <img src="images/species/delfin_comun.jpg" alt="" class="tile-bg" onerror="this.style.display='none'">
+      <div class="tile-shade"></div>
+      <div class="tile-ic">🐬</div>
+      <div class="tile-t">Fauna y Flora</div>
+      <div class="tile-s">Especies del área</div>
+    </button>
+
+      <button class="tile tile-amber" data-nav="porqueno">
+        <div class="tile-ic">❓</div>
+        <div class="tile-t">¿Por qué no?</div>
+        <div class="tile-s">Reglas explicadas</div>
+      </button>
+
+
+    <button class="tile tile-blue" data-nav="puntos">
+      <div class="tile-ic">🗺️</div>
+      <div class="tile-t">Mapa</div>
+      <div class="tile-s">Puntos + mini mapa</div>
+    </button>
+  </div>
+
+  <div class="home-foot small">
+    Datos de referencia mareográfica: <b>Puerto Punta Colorada</b> (Lat. 41°42’ S / Long. 65°00’ W) · Fuente: <b>Servicio de Hidrografía Naval</b>.
+  </div>
+</section>
+
+
+    <!-- PUNTOS -->
+    <section id="puntos" class="page">
+      <div class="toolbar">
+        <button class="btn" data-nav="home">← Inicio</button>
+        <div class="small">Puntos de Interés</div>
+      </div>
+      <div id="map" style="height:320px;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.10)"></div>
+      <div class="footerSpace"></div>
+      <div class="list" id="puntosList"></div>
+    </section>
+
+    <!-- FAUNA -->
+    <section id="fauna" class="page">
+      <div class="toolbar">
+        <button class="btn" data-nav="home">← Inicio</button>
+        <div class="small">Fauna y Flora</div>
+      </div>
+      <div class="list" id="faunaList"></div>
+    </section>
+
+    <!-- EMERGENCIAS -->
+    <section id="emergencias" class="page">
+      <div class="toolbar">
+        <button class="btn" data-nav="home">← Inicio</button>
+        <div class="small">Emergencias</div>
+      </div>
+      <div class="list" id="emerList"></div>
+      <div class="small" style="margin-top:10px">Si estás sin señal, movete a un punto alto. Evitá acercarte a la lobería si no es necesario.</div>
+    </section>
+
+    <!-- CHECKLIST -->
+    <section id="checklist" class="page">
+      <div class="toolbar">
+        <button class="btn" data-nav="home">← Inicio</button>
+        <div class="small">Checklist</div>
+      </div>
+      <div class="list" id="checkList"></div>
+    </section>
+
+    <!-- VISITANTE -->
+    <section id="visitante" class="page">
+      <div class="toolbar">
+        <button class="btn" data-nav="home">← Inicio</button>
+        <div class="small">Modo Visitante</div>
+      </div>
+      <div class="item">
+        <div class="t">Reglas básicas</div>
+        <div class="m">No alimentar fauna · no acercarse a colonias · no circular con cuatri/moto en zonas sensibles · llevarse los residuos.</div>
+      </div>
+      <div class="item">
+        <div class="t">Qué ver</div>
+        <div class="m">Lobería · costa y restingas · aves migratorias · miradores naturales.</div>
+      </div>
+      <div class="item">
+        <div class="t">Emergencias y contactos</div>
+        <div class="m">Números oficiales y qué hacer ante una emergencia dentro del ANP.</div>
+        <div class="actions"><button class="btn small" data-nav="emergencias">Ver contactos</button></div>
+      </div>
+      <div class="item">
+        <div class="t">Fauna herida o varada</div>
+        <div class="m">No tocar ni intentar devolverla al agua. Avisá primero a Guardas Ambientales y activamos el protocolo.</div>
+        <div class="actions"><button class="btn small" data-open="modal-fauna">Ver protocolo</button></div>
+      </div>
+
+    </section>
+
+    <!-- OPERATIVO (PIN placeholder) -->
+    <section id="operativo" class="page">
+      <div class="toolbar">
+        <button class="btn" data-nav="home">← Inicio</button>
+        <div class="small">Modo Operativo</div>
+      </div>
+      <div class="item">
+        <div class="t">Acceso protegido (PIN)</div>
+        <div class="m">Por ahora queda como placeholder visual. En la próxima iteración lo activamos con PIN real y guardado local.</div>
+      </div>
+      <div class="item">
+        <div class="t">Funciones previstas</div>
+        <div class="m">Registrar puntos (fotos) · tracks · checklist operativo · protocolos · exportación.</div>
+      </div>
+    </section>
+
+  
+      <section id="mareas" class="page">
+        <div class="page-header">
+          <h2>Tabla de Mareas</h2>
+          <p class="muted">Puerto Lobos / Punta Colorada · Fuente: SHN</p>
+        </div>
+
+        <div class="card">
+          <div class="card__header">
+            <h3>Hoy</h3>
+            <p class="muted" id="marea-today-sub">—</p>
+          </div>
+          <div class="card__body">
+            <div class="tide-next" id="marea-next">Cargando…</div>
+            <div class="tide-actions">
+              <label class="tide-label">Fecha</label>
+              <input type="date" id="marea-date" class="tide-date" />
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__header">
+            <h3>Eventos del día</h3>
+            <p class="muted" id="marea-day-note">—</p>
+          </div>
+          <div class="card__body">
+            <div class="tide-table-wrap">
+              <table class="tide-table" id="marea-table">
+                <thead>
+                  <tr><th>Hora</th><th>Altura (m)</th></tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <p class="muted small" id="marea-source-note"></p>
+          </div>
+        </div>
+      </section>
+
+    
+
+    <!-- ¿Por qué no? -->
+    <section id="porqueno" class="page">
+      <header class="topbar">
+        <button class="back" data-nav="home" aria-label="Volver">←</button>
+        <div class="topbar-title">¿Por qué no?</div>
+        <div class="topbar-right"></div>
+      </header>
+
+      <div class="wrap">
+        <p class="muted" style="margin-top:0">Información clara para cuidar el área y evitar daños “invisibles”.</p>
+
+        <div class="pq-grid">
+          <figure class="pq-card">
+            <img src="images/porqueno/fuego.png" alt="¿Por qué no hacer fuego?">
+          </figure>
+
+          <figure class="pq-card">
+            <img src="images/porqueno/cuatriciclos.png" alt="¿Por qué no circular con cuatriciclos por playa y zonas sensibles?">
+          </figure>
+
+          <figure class="pq-card">
+            <img src="images/porqueno/pernocte.png" alt="¿Por qué no pernoctar?">
+          </figure>
+
+          <figure class="pq-card">
+            <img src="images/porqueno/perros.png" alt="¿Por qué no ingresar con perros?">
+          </figure>
+
+          <figure class="pq-card">
+            <img src="images/porqueno/basura.png" alt="¿Por qué no dejar residuos?">
+          </figure>
+
+          <figure class="pq-card">
+            <img src="images/porqueno/no-alimentar.png" alt="¿Por qué no alimentar a la fauna?">
+          </figure>
+
+          <figure class="pq-card">
+            <img src="images/porqueno/no-acercarse.png" alt="¿Por qué no acercarse a fauna herida o varada?">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+</main>
+
+
+  <!-- Modal: Fauna herida o varada -->
+  <div id="modal-fauna" class="modal" aria-hidden="true">
+    <div class="modal__backdrop" data-close="modal-fauna"></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modal-fauna-title">
+      <div class="modal__header">
+        <h2 id="modal-fauna-title">Fauna herida o varada</h2>
+        <button class="icon-btn" data-close="modal-fauna" aria-label="Cerrar">✕</button>
+      </div>
+      <div class="modal__body">
+        <p class="muted">Si encontrás un animal herido o varado dentro del ANP, lo más importante es <strong>no intervenir</strong> y avisar.\</p>
+        <ol class="proto-list">
+          <li><strong>No tocar</strong> ni intentar devolverlo al mar.</li>
+          <li><strong>Mantené distancia</strong> (mín. 10–20 m) y evitá rodearlo.</li>
+          <li><strong>No mojar</strong> al animal ni darle comida/agua.</li>
+          <li><strong>Controlá a mascotas</strong> y pedí a otras personas que se alejen.</li>
+          <li>Si podés, anotá: ubicación, especie (aprox.), estado y sacá una foto <em>desde lejos</em>.</li>
+          <li><strong>Avisá primero a Guardas Ambientales</strong>. Nosotros activamos el protocolo y damos aviso a la institución que corresponda.</li>
+        </ol>
+        <div class="proto-actions">
+          <a class="btn btn--primary" id="call-guardas" href="tel:2804584870">Llamar a Guardas Ambientales</a>
+          <button class="btn" data-close="modal-fauna">Entendido</button>
+        </div>
+        <p class="muted small">Nota: si hay riesgo inmediato para personas (accidente, incendio, etc.), llamá al número de emergencia correspondiente.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  <!-- Modal: Fauna herida o varada -->
+  <div id="modal-fauna" class="modal" aria-hidden="true">
+    <div class="modal__backdrop" data-close="modal-fauna"></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modal-fauna-title">
+      <div class="modal__header">
+        <h2 id="modal-fauna-title">Fauna herida o varada</h2>
+        <button class="icon-btn" type="button" data-close="modal-fauna" aria-label="Cerrar">✕</button>
+      </div>
+      <div class="modal__body">
+        <p><strong>Si ves un animal herido, varado o enredado dentro del ANP:</strong></p>
+        <ol class="steps">
+          <li><strong>No tocar</strong> ni intentar devolverlo al mar.</li>
+          <li>Mantené distancia: <strong>30 m</strong> (más si es un lobo marino/cetáceo) y controlá mascotas.</li>
+          <li>Evitá ruidos, flashes y aglomeraciones. Señalizá el área si podés.</li>
+          <li>Si es seguro: sacá <strong>fotos</strong>, anotá ubicación (GPS o referencia), hora y estado.</li>
+          <li><strong>Avisanos primero</strong> y nosotros activamos el protocolo con la institución que corresponda.</li>
+        </ol>
+        <div class="callout">
+          <div>
+            <div class="callout__title">Guardas Ambientales ANP Puerto Lobos</div>
+            <div class="callout__sub">Tel: <strong>2804 584870</strong></div>
+          </div>
+          <a class="btn btn-primary" href="tel:+542804584870">Llamar</a>
+        </div>
+        <p class="muted">Si hay riesgo inmediato para personas (accidente, incendio, etc.), usá Emergencias.</p>
+      </div>
+    </div>
+  </div>
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="app.js"></script>
+</body>
+</html>
