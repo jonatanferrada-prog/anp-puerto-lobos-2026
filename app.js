@@ -141,10 +141,10 @@ function renderFauna(){
 }
 
 function renderChecklist(){
-  const wrap = $('#checkList');
+  const wrap = document.getElementById('checklist');
   wrap.innerHTML = '';
   (STATE.data.checklist || []).forEach(c=>{
-    const id = `ck_${c.id}`;
+    const id = `ck_${(c && c.id) ? c.id : Math.random().toString(16).slice(2)}`;
     const div = document.createElement('label');
     div.className = 'item';
     div.style.display = 'block';
